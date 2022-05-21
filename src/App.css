@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  background: #570a57;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -7,7 +8,7 @@
 }
 
 .formWrapper {
-  background: #2E0249;
+  background: #2e0249;
   text-align: center;
   padding: 20px;
   border-radius: 10px;
@@ -40,7 +41,7 @@
   transition: all 0.3s ease-in-out;
 }
 .loginBnt {
-  background: #F806CC;
+  background: #f806cc;
   width: 100px;
   margin-left: auto;
 }
@@ -50,8 +51,78 @@
 }
 
 .createNewBtn {
-  color: #F806CC;
+  color: #f806cc;
   text-decoration: none;
-  border-bottom: 1px solid #F806CC  ;
+  border-bottom: 1px solid #f806cc;
   transition: all 0.3s ease-in-out;
+}
+
+.navWrapper {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2e0249;
+}
+.nav {
+  width: 100%;
+  color: #fff;
+  font-size: x-large;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logInBtn,
+.logOutBtn {
+  background: #f806cc;
+  margin: 10px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.createBtn, .deleteBtn {
+  background: #f806cc;
+  text-decoration: none;
+}
+.allQuizes {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.allQuizesHeading {
+  text-align: center;
+  border-bottom: 2px solid #a91079;
+  width: 200px;
+}
+.allQuizesList {
+  width: 90%;
+  margin-top: 20px;
+}
+
+.card {
+  height: 300px;
+  color: #fff;
+  width: 350px;
+  border-radius: 10px;
+  background: #570a57;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 350px;
+}
+.quizTitle {
+  flex: 2;
+  text-align: center;
+}
+.deleteQuiz {
+  margin-bottom: 5px;
 }

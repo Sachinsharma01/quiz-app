@@ -1,18 +1,27 @@
+import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
-import "./App.css";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import CreateQuiz from "./pages/CreateQuiz";
+import "./App.css";
 
 function App() {
+  const userState = localStorage.getItem("userState");
+
   return (
     <div className="App">
+      <Header />
       <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
         <Route path="/login" exact>
-          <Login />
+          {userState === "LOGGED_IN" ? <Redirect to="/" /> : <Login />}
+        </Route>
+        <Route path="/" exact>
+          {userState === "LOGGED_IN" ? <Home /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/create" exact>
+          {userState === "LOGGED_IN" ? <CreateQuiz /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </div>
