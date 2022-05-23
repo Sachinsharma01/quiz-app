@@ -1,7 +1,7 @@
 import React from "react";
 
 const QuizCard = ({title}) => {
-  console.log(title)
+  // console.log(title)
   return (
     <div className="card">
       <h2 className="quizTitle">{title}</h2>

@@ -21,7 +21,18 @@ function App() {
           {userState === "LOGGED_IN" ? <Home /> : <Redirect to="/login" />}
         </Route>
         <Route path="/create" exact>
-          {userState === "LOGGED_IN" ? <CreateQuiz /> : <Redirect to="/login" />}
+          {userState === "LOGGED_IN" ? (
+            <CreateQuiz />
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Route>
+        <Route path="/signup" exact>
+          {userState === "LOGGED_IN" ? (
+            <Home />
+          ) : (
+            <Redirect to="/signup" />
+          )}
         </Route>
       </Switch>
     </div>

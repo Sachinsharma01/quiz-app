@@ -1,22 +1,23 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase/firebase";
 
 const Login = () => {
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
 
   const signIn = (e) => {
     e.preventDefault();
     setEmail("");
     setPassword("");
+    setUserName("");
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log("logged In");
         localStorage.setItem("userState", "LOGGED_IN");
+        localStorage.setItem("userName", userName);
         // history.replace("/");
         window.location.reload("/");
       })
@@ -30,10 +31,17 @@ const Login = () => {
         <h2>LOG IN</h2>
         <div className="inputGroup">
           <input
+            onChange={(e) => setUserName(e.target.value)}
+            value={userName}
+            className="inputBox"
+            type="text"
+            placeholder="USERNAME"
+          />
+          <input
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             className="inputBox"
-            type="text"
+            type="email"
             placeholder="EMAIL"
           />
           <input
@@ -48,7 +56,7 @@ const Login = () => {
           </button>
           <span className="createInfo">
             If you don't have an account then create &nbsp;
-            <Link to="/" className="createNewBtn">
+            <Link to="/signup" className="createNewBtn">
               signup
             </Link>
           </span>

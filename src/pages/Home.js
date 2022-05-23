@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import QuizCard from "../components/QuizCard";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { useContext } from "react";
+import { QuizData } from "../context/store";
+import { getDataFromQuizIds, getUserQuizIds } from "../helpers/getUserQuizIds";
 
 const Home = () => {
-  const [quizes, setQuizes] = useState([]);
-  useEffect(() => {
-    const getData = async () => {
-      const response = await getDocs(collection(db, "quizes"));
-      let data = [];
-      response.forEach((doc) => {
-        // console.log(`${doc.id} => ${doc.data().questions[0]}`);
-        // console.log(doc.data());
-        data.push(doc.data());
-      });
-      // console.log(data)
-      setQuizes(data)
-    };
-    // console.log(quizes);
-    getData();
-  }, []);
-  console.log(quizes)
+  const data = useContext(QuizData);
+  const userName = localStorage.getItem("userName");
+
+  const quizIdArray = getUserQuizIds(data.allUsers);
+  const quizIdArrayData = getDataFromQuizIds(data.allQuizIds, quizIdArray);
+
+  // console.log(getUserQuizIds(data.allUsers));
+  // getDataFromQuizIds(data.allQuizIds, quizIdArray);
 
   return (
     <>
       <div className="mainWrapper">
         <section className="main">
-          <h2>Welcome Back </h2>
+          <h2>Welcome Back {userName} </h2>
           <Link to="/create" target="_blank" className="btn createBtn">
             Create Quiz
           </Link>
@@ -38,10 +30,9 @@ const Home = () => {
             <h2>All QUIZZEZ</h2>
           </div>
           <section className="allQuizesList">
-            {
-              quizes.map((quiz, idx) => <QuizCard key={idx} title={quiz.title} />)
-              
-            }
+            {quizIdArrayData.map((quiz, idx) => (
+              <QuizCard key={idx} title={quiz.title} />
+            ))}
           </section>
         </section>
       </div>
