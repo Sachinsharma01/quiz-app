@@ -1,9 +1,9 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase/firebase";
 
-const Login = () => {
+const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,28 +13,19 @@ const Login = () => {
     setEmail("");
     setPassword("");
     setUserName("");
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        console.log("logged In");
-        localStorage.setItem("userState", "LOGGED_IN");
-        localStorage.setItem("userName", userName);
-        // history.replace("/");
-        window.location.reload("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    createUserWithEmailAndPassword(auth, email, password).then(() => {
+        console.log("User Created")
+    })
   };
   return (
     <div className="wrapper">
-      <form className="formWrapper">
+      <div className="formWrapper">
         <h2>LOG IN</h2>
         <div className="inputGroup">
           <input
             onChange={(e) => setUserName(e.target.value)}
             value={userName}
             className="inputBox"
-            required
             type="text"
             placeholder="USERNAME"
           />
@@ -42,7 +33,6 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             className="inputBox"
-            required
             type="email"
             placeholder="EMAIL"
           />
@@ -50,23 +40,22 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             className="inputBox"
-            required
             type="password"
             placeholder="PASSWORD"
           />
-          <button type="submit" onClick={signIn} className="btn loginBnt">
+          <button type="submit" onClick={signIn} className="btn SignUpBnt">
             LOG IN
           </button>
           <span className="createInfo">
-            If you don't have an account then create &nbsp;
-            <Link to="/signup" className="createNewBtn">
-              signup
+            If you already have an account then &nbsp;
+            <Link to="/login" className="createNewBtn">
+              login
             </Link>
           </span>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

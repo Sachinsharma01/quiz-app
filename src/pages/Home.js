@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import QuizCard from "../components/QuizCard";
 import { useContext } from "react";
@@ -10,7 +10,9 @@ const Home = () => {
   const userName = localStorage.getItem("userName");
 
   const quizIdArray = getUserQuizIds(data.allUsers);
+  console.log(quizIdArray )
   const quizIdArrayData = getDataFromQuizIds(data.allQuizIds, quizIdArray);
+  console.log(quizIdArrayData)
 
   // console.log(getUserQuizIds(data.allUsers));
   // getDataFromQuizIds(data.allQuizIds, quizIdArray);
@@ -31,7 +33,7 @@ const Home = () => {
           </div>
           <section className="allQuizesList">
             {quizIdArrayData.map((quiz, idx) => (
-              <QuizCard key={idx} title={quiz.title} />
+              <QuizCard key={idx} title={quiz.title} id={quiz.id} />
             ))}
           </section>
         </section>

@@ -38,7 +38,7 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   // console.log(allQuizIds);
-  console.log(allUsers);
+  // console.log(allUsers);
 
   return (
     <QuizData.Provider value={{ allQuizIds, allUsers }}>
