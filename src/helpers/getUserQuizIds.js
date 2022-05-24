@@ -5,7 +5,7 @@ export const getUserQuizIds = (allUsers) => {
 
 export const getDataFromQuizIds = (quizIds, quizIdArray) => {
   var response = [];
-  if (quizIdArray !== null && quizIdArray !== undefined){
+  if (quizIdArray !== null && quizIdArray !== undefined) {
     quizIdArray.forEach((quizId) => {
       console.log(quizId);
       response.push(quizIds[quizId]);
@@ -13,4 +13,12 @@ export const getDataFromQuizIds = (quizIds, quizIdArray) => {
     console.log(response);
   }
   return response;
+};
+
+export const getFilteredDataArray = async  (originalArray, id) => {
+  const res = originalArray.filter((quizId) => {
+    return quizId !== id;
+  });
+  console.log(res + " id : " + id)
+  return res;
 };

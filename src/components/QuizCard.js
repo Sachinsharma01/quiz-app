@@ -1,15 +1,25 @@
-import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
-import React from "react";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import React, { useContext } from "react";
+import { QuizData } from "../context/store";
 import { db } from "../firebase/firebase";
+import { getFilteredDataArray, getUserQuizIds } from "../helpers/getUserQuizIds";
 
 const QuizCard = ({ title, id }) => {
   console.log(id);
   const userName = localStorage.getItem("userName");
+  const allUsersArray = useContext(QuizData).allUsers;
+  const quizArray =  getUserQuizIds(allUsersArray)
+  
   const deleteJobHandler = async () => {
+    
     await deleteDoc(doc(db, "quizes", id + ""));
     const dbRef = doc(db, "users", userName);
+    const newUpdatedArray = await getFilteredDataArray(quizArray, id)
+    console.log("type of array " + newUpdatedArray)
+    
+
     await updateDoc(dbRef, {
-      quizIDs: arrayRemove(id),
+      quizIDs: newUpdatedArray,
     });
     window.location.reload("/");
   };
