@@ -38,6 +38,7 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   // console.log(allQuizIds);
+  localStorage.setItem('allUsers', JSON.stringify(allUsers))
   // console.log(allUsers);
 
   return (

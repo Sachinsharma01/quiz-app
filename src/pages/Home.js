@@ -9,10 +9,11 @@ const Home = () => {
   const data = useContext(QuizData);
   const userName = localStorage.getItem("userName");
 
+  // console.log(data.allUsers)
   const quizIdArray = getUserQuizIds(data.allUsers);
-  console.log(quizIdArray )
+  console.log(quizIdArray);
   const quizIdArrayData = getDataFromQuizIds(data.allQuizIds, quizIdArray);
-  console.log(quizIdArrayData)
+  console.log(quizIdArrayData);
 
   // console.log(getUserQuizIds(data.allUsers));
   // getDataFromQuizIds(data.allQuizIds, quizIdArray);
@@ -32,9 +33,10 @@ const Home = () => {
             <h2>All QUIZZEZ</h2>
           </div>
           <section className="allQuizesList">
-            {quizIdArrayData.map((quiz, idx) => (
-              <QuizCard key={idx} title={quiz.title} id={quiz.id} />
-            ))}
+            {quizIdArrayData.map(
+              (quiz, idx) =>
+                quiz && <QuizCard key={idx} title={quiz.title} id={quiz.id} />
+            )}
           </section>
         </section>
       </div>

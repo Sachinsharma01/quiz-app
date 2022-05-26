@@ -1,3 +1,8 @@
+body {
+  background: #570a57;
+  color: #fff;
+  overflow-x: hidden;
+}
 .wrapper {
   display: flex;
   background: #570a57;
@@ -30,6 +35,9 @@
   font-size: 16px;
   font-weight: bold;
 }
+.inputBox:focus {
+  border: 1.5px solid #a91079;
+}
 .btn {
   color: #fff;
   border: none;
@@ -58,7 +66,7 @@
 }
 
 .navWrapper {
-  width: 100%;
+  width: 100vw;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -66,7 +74,7 @@
   background: #2e0249;
 }
 .nav {
-  width: 100%;
+  width: 100vw;
   color: #fff;
   font-size: x-large;
   margin-left: 20px;
@@ -87,9 +95,24 @@
   flex-direction: column;
 }
 .createBtn,
-.deleteBtn {
+.deleteBtn,
+.nextBtn,
+.saveBtn,
+.optionBtn {
   background: #f806cc;
   text-decoration: none;
+  margin: 10px;
+}
+.optionBtn {
+  background: #a91079;
+}
+.optionBtn:active {
+  background: #f806cc;
+}
+.inactive {
+  background: #f053be;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 .allQuizes {
   margin-top: 50px;
@@ -106,16 +129,19 @@
 .allQuizesList {
   width: 90%;
   margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .card {
+  margin-top: 20px;
   height: 300px;
   color: #fff;
   width: 350px;
   border-radius: 10px;
-  background: #570a57;
+  background: #2e0249;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,4 +154,115 @@
 }
 .deleteQuiz {
   margin-bottom: 5px;
+}
+
+.addQuestionsHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #570a57;
+  height: 100vh;
+}
+
+.questions {
+  background: #2e0249;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 400px;
+  max-width: 90%;
+  margin: 5% 5%;
+  padding: 20px;
+  width: 80%;
+  /* height: 70%; */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+label {
+  width: 30%;
+  color: #000;
+  margin: 10px;
+  font-size: larger;
+}
+label {
+  color: #fff;
+}
+.questionLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+textarea {
+  margin: 10px;
+  background-color: #fff;
+  border: none;
+  padding: 20px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  width: 60%;
+  resize: none;
+}
+.options {
+  margin: 10px;
+  align-items: center;
+}
+.options .selectOptions {
+  width: 10%;
+  height: 50px;
+  min-width: 100px;
+  margin: 20px;
+}
+.allOptions {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.correctOption {
+  margin: 10px;
+}
+.showQuizId {
+  height: 80vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: x-large;
+  font-weight: bolder;
+}
+.displayQuestion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playQuizWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playQuizWrapper .questions {
+  margin: 10%;
+}
+.playQuizDisplayQuestion {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.optionBtn {
+  padding: 15px;
+  margin: 20px;
+}
+.optionBtn::placeholder {
+  color: #fff;
+}
+.selected {
+  background: #570a57;
+}
+
+@media screen {
 }

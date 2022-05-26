@@ -5,7 +5,9 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import CreateQuiz from "./pages/CreateQuiz";
+import ShowQuizId from "./pages/ShowQuizId";
 import "./App.css";
+import PlayQuiz from "./pages/PlayQuiz";
 
 function App() {
   const userState = localStorage.getItem("userState");
@@ -27,12 +29,18 @@ function App() {
             <Redirect to="/login" />
           )}
         </Route>
-        <Route path="/signup" exact>
+        <Route path="/createQuiz/showQuizId" exact>
           {userState === "LOGGED_IN" ? (
-            <Home />
+            <ShowQuizId />
           ) : (
-            <Redirect to="/signup" />
+            <Redirect to="/login" />
           )}
+        </Route>
+        <Route path="/signup" exact>
+          {userState === "LOGGED_IN" ? <Home /> : <Redirect to="/signup" />}
+        </Route>
+        <Route path="/playQuiz/:id">
+        <PlayQuiz />
         </Route>
       </Switch>
     </div>
