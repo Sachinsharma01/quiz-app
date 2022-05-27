@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import QuizCard from "../components/QuizCard";
 import { useContext } from "react";
 import { QuizData } from "../context/store";
-import { getDataFromQuizIds, getUserQuizIds } from "../helpers/getUserQuizIds";
+import { getDataFromQuizIds, getUserQuizIds } from "../helpers/getData";
 
 const Home = () => {
   const data = useContext(QuizData);

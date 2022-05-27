@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { validateAnswers } from "../helpers/getUserQuizIds";
+import { validateAnswers } from "../helpers/getData";
 
 const PlayQuiz = () => {
   const [quiz, setQuiz] = useState(JSON.parse(localStorage.getItem("quiz")));

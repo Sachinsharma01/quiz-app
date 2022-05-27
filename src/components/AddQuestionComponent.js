@@ -5,7 +5,7 @@ import {
   getAllInputs,
   uploadQuizDetailsInFirebase,
   uploadQuizIdToUserDetailsInFirebase,
-} from "../helpers/getUserQuizIds";
+} from "../helpers/getData";
 
 const AddQuestionComponent = ({ totalQuestions }) => {
   const [questionNumber, setQuestionNumber] = useState(1);

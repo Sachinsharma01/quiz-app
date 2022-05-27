@@ -6,9 +6,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import CreateQuiz from "./pages/CreateQuiz";
 import ShowQuizId from "./pages/ShowQuizId";
-import "./App.css";
 import PlayQuiz from "./pages/PlayQuiz";
 import SignUp from "./pages/SignUp";
+import "./App.css";
 
 function App() {
   const userState = localStorage.getItem("userState");
