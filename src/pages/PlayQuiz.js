@@ -12,6 +12,8 @@ const PlayQuiz = () => {
     setUserChosenOption([...userChosenOption, event.target.value]);
     !quiz[questionIndex].isMultipleChoice && playQuizNexButtonHandler();
   };
+
+  //! handling the validation of answers when next button is clicked
   const playQuizNexButtonHandler = () => {
     if (quiz[questionIndex].isMultipleChoice) {
       var actualCorrectAnswers = [];

@@ -4,13 +4,12 @@ import { db } from "../firebase/firebase";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase/firebase";
-import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+
 
   const signUp = (e) => {
     e.preventDefault();
@@ -19,11 +18,15 @@ const SignUp = () => {
     setUserName("");
     createUserWithEmailAndPassword(auth, email, password).then(async () => {
       console.log("User Created");
+
+      //! settting the userState to logged in and userName to the registered user
       localStorage.setItem("userState", "LOGGED_IN");
       localStorage.setItem("userName", userName);
       await setDoc(doc(db, "users", userName), {
         quizIDs: [],
       });
+
+      //? redirection the user to the home page (only when authenticated)
       window.location.reload("/")
     }).catch((err) => {
       alert("User already exists")

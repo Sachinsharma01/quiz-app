@@ -33,6 +33,8 @@ const AddQuestionComponent = ({ totalQuestions }) => {
 
     console.log("totalQuestions " + typeof totalQuestions);
     console.log("question number " + typeof questionNumber);
+
+    //? if the question number is equal to the total number of question in the quiz tehn show the save button to save the quiz
     if (questionNumber === parseInt(totalQuestions)) {
       setQuestionLimitReached(true);
       console.log(questionLimitReached);
@@ -55,10 +57,12 @@ const AddQuestionComponent = ({ totalQuestions }) => {
   };
 
   const saveSingleOptionHandler = () => {
+    //! setting all options to answer in an array
     setAllOptions([...allOptions, singleOption]);
   };
 
   const saveQuizHandler = () => {
+    //! getting the uniques six length alphanumeric permalink
     const quizId = generateSixCharacterAlphaNumericPermaLink();
     console.log(quizId);
 
@@ -66,6 +70,7 @@ const AddQuestionComponent = ({ totalQuestions }) => {
     localStorage.setItem("quizId", JSON.stringify(quizId));
     console.log(quiz);
 
+    //? uploading the quiz to the firebase and updatin the quizID array containing all the quizes that registered user has created
     uploadQuizDetailsInFirebase(quiz);
     uploadQuizIdToUserDetailsInFirebase();
     history.replace("/createQuiz/showQuizId");
@@ -145,12 +150,17 @@ const AddQuestionComponent = ({ totalQuestions }) => {
                 className="inputBox"
               />
               <br />
-              {!questionIsMultipleChoice && <small className="information">
-                Please specify the option number eg, 1
-              </small>}
-              {questionIsMultipleChoice &&  <small className="information">
-                In case of multi choice please specify the option number separated by space eg, 1 2
-              </small>}
+              {!questionIsMultipleChoice && (
+                <small className="information">
+                  Please specify the option number eg, 1
+                </small>
+              )}
+              {questionIsMultipleChoice && (
+                <small className="information">
+                  In case of multi choice please specify the option number
+                  separated by space eg, 1 2
+                </small>
+              )}
             </div>
           </>
         ) : (

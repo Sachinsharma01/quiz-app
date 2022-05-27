@@ -9,14 +9,15 @@ const Home = () => {
   const data = useContext(QuizData);
   const userName = localStorage.getItem("userName");
 
-  // console.log(data.allUsers)
+  //? getting list of all quizIDs that user has created from from firebase
   const quizIdArray = getUserQuizIds(data.allUsers);
   console.log(quizIdArray);
+
+  //? getting list of all data of all quizes 
   const quizIdArrayData = getDataFromQuizIds(data.allQuizIds, quizIdArray);
   console.log(quizIdArrayData);
 
-  // console.log(getUserQuizIds(data.allUsers));
-  // getDataFromQuizIds(data.allQuizIds, quizIdArray);
+
 
   return (
     <>

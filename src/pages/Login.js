@@ -15,10 +15,12 @@ const Login = () => {
     setUserName("");
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
+        //! settting the userState to logged in and userName to the registered user
         console.log("logged In");
         localStorage.setItem("userState", "LOGGED_IN");
         localStorage.setItem("userName", userName);
-        // history.replace("/");
+        
+      //? redirection the user to the home page (only when authenticated)
         window.location.reload("/");
       })
       .catch((err) => {
