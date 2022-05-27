@@ -19,9 +19,6 @@ const PlayQuiz = () => {
         actualCorrectAnswers.push(quiz[questionIndex].options[parseInt(value) - 1]);
       });
 
-      console.log(actualCorrectAnswers);
-      console.log(userChosenOption);
-
 
       if (validateAnswers(actualCorrectAnswers, userChosenOption))
         setScore((previouscore) => previouscore + 1);

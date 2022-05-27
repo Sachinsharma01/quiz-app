@@ -90,6 +90,5 @@ export const validateAnswers = (actualAnswers, userAnswers) => {
       flag++;
     }
   }
-  console.log(flag === actualAnswers.length)
   return flag === actualAnswers.length;
 };

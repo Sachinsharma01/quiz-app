@@ -87,7 +87,7 @@ body {
   background: #f806cc;
   margin: 10px;
   color: #fff;
-  text-decoration: no;
+  text-decoration: none;
 }
 .main {
   display: flex;
