@@ -129,6 +129,7 @@ body {
 }
 .allQuizesList {
   width: 90%;
+  min-width: 393px;
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;

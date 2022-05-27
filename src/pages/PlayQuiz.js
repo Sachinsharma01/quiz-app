@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { validateAnswers } from "../helpers/getUserQuizIds";
 
 const PlayQuiz = () => {
   const [quiz, setQuiz] = useState(JSON.parse(localStorage.getItem("quiz")));
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [userChosenOption, setUserChosenOption] = useState("");
+  const [userChosenOption, setUserChosenOption] = useState([]);
   const [score, setScore] = useState(0);
 
   const userChoiceOptionHandler = (event) => {
-    setUserChosenOption(event.target.value);
-    playQuizNexButtonHandler();
+    setUserChosenOption([...userChosenOption, event.target.value]);
+    !quiz[questionIndex].isMultipleChoice && playQuizNexButtonHandler();
   };
   const playQuizNexButtonHandler = () => {
-    if (userChosenOption === quiz[questionIndex].answer) {
-      setScore((previouscore) => previouscore + 1);
-    }
+    if (quiz[questionIndex].isMultipleChoice) {
+      var actualCorrectAnswers = [];
+      quiz[questionIndex].answer.split(" ").map((value) => {
+        actualCorrectAnswers.push(quiz[questionIndex].options[parseInt(value) - 1]);
+      });
+
+      console.log(actualCorrectAnswers);
+      console.log(userChosenOption);
+
+
+      if (validateAnswers(actualCorrectAnswers, userChosenOption))
+        setScore((previouscore) => previouscore + 1);
+      }
     setQuestionIndex((previousQuizIndex) => previousQuizIndex + 1);
   };
 
@@ -42,10 +53,12 @@ const PlayQuiz = () => {
                   readOnly
                   value={quiz[questionIndex].question}
                 ></textarea>
-                </div>
-                {quiz[questionIndex].isMultipleChoice && (
-                  <small className="information">This Question is a multiple choice question</small>
-                )}
+              </div>
+              {quiz[questionIndex].isMultipleChoice && (
+                <small className="information">
+                  This Question is a multiple choice question
+                </small>
+              )}
               <div className="playQuizAllOptions">
                 <div className="playQuizAllOptions">
                   {quiz[questionIndex].options.map((option) => (
@@ -60,14 +73,15 @@ const PlayQuiz = () => {
                   ))}
                 </div>
               </div>
-              {
-                // <button
-                //   onClick={playQuizNexButtonHandler}
-                //   className="btn nextBtn"
-                // >
-                //   NEXT
-                // </button>
-              }
+
+              {quiz[questionIndex].isMultipleChoice && (
+                <button
+                  onClick={playQuizNexButtonHandler}
+                  className="btn nextBtn"
+                >
+                  NEXT
+                </button>
+              )}
             </>
           )}
         </div>

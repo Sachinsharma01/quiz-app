@@ -80,3 +80,16 @@ export const uploadQuizIdToUserDetailsInFirebase = async () => {
   });
   console.log("uploaded");
 };
+
+export const validateAnswers = (actualAnswers, userAnswers) => {
+  let flag = 0;
+  console.log(actualAnswers);
+  console.log(userAnswers);
+  for (let i = 0; i < actualAnswers.length; i++) {
+    if (userAnswers.indexOf(actualAnswers[i]) !== -1) {
+      flag++;
+    }
+  }
+  console.log(flag === actualAnswers.length)
+  return flag === actualAnswers.length;
+};
