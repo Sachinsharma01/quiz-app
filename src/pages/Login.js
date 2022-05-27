@@ -23,6 +23,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+        alert("Enter valid Details");
       });
   };
   return (
@@ -54,7 +55,15 @@ const Login = () => {
             type="password"
             placeholder="PASSWORD"
           />
-          <button type="submit" onClick={signIn} className="btn loginBnt">
+          <button
+            type="submit"
+            onClick={signIn}
+            className={
+              userName && email && password
+                ? "btn loginBtn"
+                : "btn loginBtn inactive"
+            }
+          >
             LOG IN
           </button>
           <span className="createInfo">

@@ -8,6 +8,7 @@ import CreateQuiz from "./pages/CreateQuiz";
 import ShowQuizId from "./pages/ShowQuizId";
 import "./App.css";
 import PlayQuiz from "./pages/PlayQuiz";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const userState = localStorage.getItem("userState");
@@ -37,10 +38,10 @@ function App() {
           )}
         </Route>
         <Route path="/signup" exact>
-          {userState === "LOGGED_IN" ? <Home /> : <Redirect to="/signup" />}
+          {userState === "LOGGED_IN" ? <Home /> : <SignUp />}
         </Route>
         <Route path="/playQuiz/:id">
-        <PlayQuiz />
+          <PlayQuiz />
         </Route>
       </Switch>
     </div>

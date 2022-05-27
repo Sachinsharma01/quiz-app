@@ -1,26 +1,38 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase/firebase";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
-  const signIn = (e) => {
+  const signUp = (e) => {
     e.preventDefault();
     setEmail("");
     setPassword("");
     setUserName("");
-    createUserWithEmailAndPassword(auth, email, password).then(() => {
-        console.log("User Created")
+    createUserWithEmailAndPassword(auth, email, password).then(async () => {
+      console.log("User Created");
+      localStorage.setItem("userState", "LOGGED_IN");
+      localStorage.setItem("userName", userName);
+      await setDoc(doc(db, "users", userName), {
+        quizIDs: [],
+      });
+      window.location.reload("/")
+    }).catch((err) => {
+      alert("User already exists")
     })
   };
   return (
     <div className="wrapper">
       <div className="formWrapper">
-        <h2>LOG IN</h2>
+        <h2>SIGN UP</h2>
         <div className="inputGroup">
           <input
             onChange={(e) => setUserName(e.target.value)}
@@ -43,8 +55,16 @@ const SignUp = () => {
             type="password"
             placeholder="PASSWORD"
           />
-          <button type="submit" onClick={signIn} className="btn SignUpBnt">
-            LOG IN
+          <button
+            type="submit"
+            onClick={signUp}
+            className={
+              userName && email && password
+                ? "btn signUpBtn"
+                : "btn signUpBtn inactive"
+            }
+          >
+            SIGN UP
           </button>
           <span className="createInfo">
             If you already have an account then &nbsp;

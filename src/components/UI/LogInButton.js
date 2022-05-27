@@ -1,7 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LogInButton = () => {
-  return <button className="btn logInBtn">LOG IN</button>;
+  return (
+      <Link to="/login" className="btn logInBtn">LOG IN</Link>
+  );
 };
 
 export default LogInButton;

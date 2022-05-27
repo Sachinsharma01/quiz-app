@@ -25,12 +25,12 @@ const PlayQuiz = () => {
       <div className="playQuizWrapper">
         <div className="questions">
           {questionIndex === length ? (
-            <>
+            <div>
               <h1>Your Score {score} </h1>
               <Link className="btn nextBtn" to="/">
                 Home
               </Link>
-            </>
+            </div>
           ) : (
             <>
               <div className="displayQuestion">
@@ -42,7 +42,10 @@ const PlayQuiz = () => {
                   readOnly
                   value={quiz[questionIndex].question}
                 ></textarea>
-              </div>
+                </div>
+                {quiz[questionIndex].isMultipleChoice && (
+                  <small className="information">This Question is a multiple choice question</small>
+                )}
               <div className="playQuizAllOptions">
                 <div className="playQuizAllOptions">
                   {quiz[questionIndex].options.map((option) => (

@@ -50,7 +50,7 @@ const CreateQuiz = () => {
         <div className="questions">
           <h1>{quizTitle}</h1>
           <AddQuestionComponent
-            numberOfQuestions={parseInt(numberOfQuestions)}
+            totalQuestions={numberOfQuestions}
           />
         </div>
       )}
