@@ -12,7 +12,7 @@ const ShowQuizId = () => {
         <p>
           Quiz Link :
           <Link to={"/playQuiz/" + { quizId }} state={quizId} target="_blank">
-            http://localhost:3000/createQuiz/{quizId}
+          https://quiz-j878qqcyi-sachinsharma01.vercel.app/login{quizId}
           </Link>
         </p>
       </div>
