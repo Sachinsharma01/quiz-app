@@ -11,17 +11,15 @@ import SignUp from "./pages/SignUp";
 import "./App.css";
 
 function App() {
-
   //* getting the current status of the user i.e., user is logged in of not
   const userState = localStorage.getItem("userState");
 
   return (
     <div className="App">
       <Header />
-      //? Using react-router-dom library to navigate through different routes
+      {/*? Using react-router-dom library to navigate through different routes*/}
       <Switch>
-
-      //! Preventing the user visit the routes that requires authentication
+        //! Preventing the user visit the routes that requires authentication
         <Route path="/login" exact>
           {userState === "LOGGED_IN" ? <Redirect to="/" /> : <Login />}
         </Route>

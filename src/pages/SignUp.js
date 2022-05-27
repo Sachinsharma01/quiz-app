@@ -26,7 +26,7 @@ const SignUp = () => {
         quizIDs: [],
       });
 
-      //? redirection the user to the home page (only when authenticated)
+      //? redirecting the user to the home page (only when authenticated)
       window.location.reload("/")
     }).catch((err) => {
       alert("User already exists")
