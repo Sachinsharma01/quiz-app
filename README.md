@@ -7,6 +7,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `Demo`
-
+demo name : dev
+demo email : test@test.com
+demo pass : test@test
 
 
