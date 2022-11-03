@@ -11,7 +11,7 @@ const ShowQuizId = () => {
         <div>Your Generated Quiz ID : {quizId}</div>
         <p>
           Quiz Link :
-          <Link to={"/playQuiz/" + { quizId }} state={quizId} target="_blank">
+          <Link to={`/playQuiz/${quizId}`} state={quizId} target="_blank">
           http://localhost:3000/createQuiz/{quizId}
           </Link>
         </p>
